@@ -54,10 +54,12 @@ export const getRegion = async (countryCode: string) => {
         regionMap.set(c?.iso_2 ?? "", region)
       })
     })
+    console.log("region lst", regions)
 
     const region = countryCode
       ? regionMap.get(countryCode)
-      : regionMap.get("us")
+      : regionMap.get("in")
+    console.log("countryCode in region.ts", countryCode)
 
     return region
   } catch (e: any) {
