@@ -34,6 +34,15 @@ module.exports = {
           80: "#1F2937",
           90: "#111827",
         },
+        green: {
+          50: "#ECFDF5",
+          100: "#D1FAE5",
+          200: "#A7F3D0",
+        },        
+        emerald: {
+          500: "#10B981",
+          600: "#059669",
+        },
         primary: "#4F46E5", // Vibrant Indigo
         secondary: "#9333EA", // Deep Purple
         accent: "#F59E0B", // Amber
@@ -145,6 +154,18 @@ module.exports = {
           "0%": { transform: "translateY(-100%)" },
           "100%": { transform: "translateY(0)" },
         },
+        "text-reveal": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(20px)",
+            clipPath: "inset(0 100% 0 0)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+            clipPath: "inset(0 0 0 0)",
+          },
+        },
       },
       animation: {
         ring: "ring 2.2s cubic-bezier(0.5, 0, 0.5, 1) infinite",
@@ -160,6 +181,12 @@ module.exports = {
         enter: "enter 200ms ease-out",
         "slide-in": "slide-in 1.2s cubic-bezier(.41,.73,.51,1.02)",
         leave: "leave 150ms ease-in forwards",
+        "text-reveal": "text-reveal 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards",
+      },
+      animationDelay: {
+        300: "300ms",
+        600: "600ms",
+        900: "900ms",
       },
     },
   },
