@@ -34,6 +34,9 @@ module.exports = {
           80: "#1F2937",
           90: "#111827",
         },
+        primary: "#4F46E5", // Vibrant Indigo
+        secondary: "#9333EA", // Deep Purple
+        accent: "#F59E0B", // Amber
       },
       borderRadius: {
         none: "0px",
@@ -60,6 +63,7 @@ module.exports = {
       },
       fontFamily: {
         sans: [
+          "Poppins",
           "Inter",
           "-apple-system",
           "BlinkMacSystemFont",
@@ -69,6 +73,7 @@ module.exports = {
           "Ubuntu",
           "sans-serif",
         ],
+        serif: ["Playfair Display", "serif"],
       },
       keyframes: {
         ring: {
