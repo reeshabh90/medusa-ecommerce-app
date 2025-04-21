@@ -167,6 +167,8 @@ const MobileActions: React.FC<MobileActionsProps> = ({
                       onClick={close}
                       className="bg-white w-12 h-12 rounded-full text-ui-fg-base flex justify-center items-center"
                       data-testid="close-modal-button"
+                      title="Close"
+                      aria-label="Close"
                     >
                       <X />
                     </button>

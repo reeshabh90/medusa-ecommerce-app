@@ -10,6 +10,7 @@ import SkeletonRelatedProducts from "@modules/skeletons/templates/skeleton-relat
 import { notFound } from "next/navigation"
 import ProductActionsWrapper from "./product-actions-wrapper"
 import { HttpTypes } from "@medusajs/types"
+import ProductImageGallery from "@modules/products/templates/product-image-gallery/product-image-gallery"
 
 type ProductTemplateProps = {
   product: HttpTypes.StoreProduct
@@ -22,47 +23,41 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
   region,
   countryCode,
 }) => {
-  if (!product || !product.id) {
+  if (!product || !product.id || !product.images?.length) {
     return notFound()
   }
 
   return (
-    <>
-      <div
-        className="content-container flex flex-col small:flex-row small:items-start py-6 relative"
-        data-testid="product-container"
-      >
-        <div className="flex flex-col small:sticky small:top-48 small:py-0 small:max-w-[300px] w-full py-8 gap-y-6">
-          <ProductInfo product={product} />
-          <ProductTabs product={product} />
+    <div className="content-container py-6 relative">
+      <div className="flex flex-col lg:flex-row lg:items-start">
+        <div className="w-full lg:w-1/2 pr-0 lg:pr-8">
+          <div className="block w-full relative">
+            <ProductImageGallery product={product} />
+          </div>
         </div>
-        <div className="block w-full relative">
-          <ImageGallery images={product?.images || []} />
-        </div>
-        <div className="flex flex-col small:sticky small:top-48 small:py-0 small:max-w-[300px] w-full py-8 gap-y-12">
-          <ProductOnboardingCta />
-          <Suspense
-            fallback={
-              <ProductActions
-                disabled={true}
-                product={product}
-                region={region}
-              />
-            }
-          >
-            <ProductActionsWrapper id={product.id} region={region} />
-          </Suspense>
+        <div className="w-full lg:w-1/2 py-8 lg:py-0 flex flex-col gap-y-6">
+          <div className="flex flex-col sticky top-24 lg:top-48 py-0 max-w-[400px] gap-y-6">
+            <ProductInfo product={product} />
+            <ProductTabs product={product} />
+            <div className="mt-auto">
+              <ProductOnboardingCta />
+              <Suspense
+                fallback={
+                  <ProductActions disabled={true} product={product} region={region} />
+                }
+              >
+                <ProductActionsWrapper id={product.id} region={region} />
+              </Suspense>
+            </div>
+          </div>
         </div>
       </div>
-      <div
-        className="content-container my-16 small:my-32"
-        data-testid="related-products-container"
-      >
+      <div className="content-container my-16 sm:my-32">
         <Suspense fallback={<SkeletonRelatedProducts />}>
           <RelatedProducts product={product} countryCode={countryCode} />
         </Suspense>
       </div>
-    </>
+    </div>
   )
 }
 
